@@ -1,0 +1,28 @@
+---
+layout: default
+title: Home
+---
+<div class="introduction">
+  <h1>Hey Popileople!</h1>
+  <p>This is where we write about stuff that is too long to tweet.</p>
+</div>
+
+<hr>
+
+<div class="toc">
+  <h2>Recent Posts</h2>
+  <ul class="post">
+  {% for item in site.posts do %}
+  
+    <li class="post-title">
+      <a href="{{ site.baseurl }}{{ item.url }}">
+        {{ item.title }}
+      </a>
+    </li>
+  {% endfor %}
+  </ul>  
+
+</div>
+
+
+
