@@ -244,3 +244,9 @@ ol.bibliography {
 	padding-left: 1rem;
 	text-indent: -1rem;
 }
+
+/* Custom styles */
+
+table {
+    font-size: 12px;
+}
