@@ -12,7 +12,43 @@ First step, grab the `popily-api` package from pypi.
 pip install popily-api
 {% endhighlight %}
 
-Now you'll need some data. Popily works with most machine-readable data like CSV files, JSON APIs, and databases like MySQL, PostgreSQL or ElasticSearch. For demonstration purposes I'll use [this CSV file of DC Comics characters](https://github.com/fivethirtyeight/data/blob/master/comic-characters/dc-wikia-data.csv) that the website 538 used in a [great story about women in comic books](http://fivethirtyeight.com/features/women-in-comic-books/).
+---
+
+## First, the Super Fast Intro
+
+{% highlight python %}
+import popily_api
+
+your_data_url = 'http://your-data.csv'
+columns_in_your_data = [
+    {
+        'column_header': 'Column A',
+        'data_type': 'numeric'
+    },
+    {
+        'column_header': 'Column B',
+        'data_type': 'category'
+    }
+]
+popily = popily_api.Popily('YOUR API TOKEN')
+source = popily.add_source('http://your-csv-file.csv', 
+                    columns=columns_in_your_data)
+
+insights = popily.get_insights(source['id'],
+                        columns=['Column A', 'Column B'])
+
+for insight in insights['results']:
+    embed_url = insight['embed_url']
+    print embed_url
+
+# now go put the embed_url in an iframe
+{% endhighlight %}
+
+---
+
+## Now More Details
+
+First you'll need some data. Popily works with most machine-readable data like CSV files, JSON APIs, and databases like MySQL, PostgreSQL or ElasticSearch. For demonstration purposes I'll use [this CSV file of DC Comics characters](https://github.com/fivethirtyeight/data/blob/master/comic-characters/dc-wikia-data.csv) that the website 538 used in a [great story about women in comic books](http://fivethirtyeight.com/features/women-in-comic-books/).
 
 Here's a few rows from the file so you know what we're working with.
 
@@ -41,9 +77,9 @@ We can post this file to Popily with a description of the type of data in each c
 With all that out of the way, here's the code that adds this data source to Popily.
 
 {% highlight python %}
-import popily
+import popily_api
 
-popily_api = popily.Popily('YOUR API TOKEN')
+popily = popily_api.Popily('YOUR API TOKEN')
 
 # Grab the file on your machine
 file_data = {'data': open('/path/to/the/file.csv')}
@@ -75,7 +111,7 @@ columns = [
     }
 ]
 
-source = popily_api.add_source(file_obj=file_data, 
+source = popily.add_source(file_obj=file_data, 
                                 columns=columns, title=title)
 {% endhighlight %}
 
@@ -86,13 +122,13 @@ A couple things to point out:
 {% highlight python %}
 # Get the data from a URL
 url = 'https://raw.githubusercontent.com/fivethirtyeight/data/master/comic-characters/dc-wikia-data.csv'
-source = popily_api.add_source(url=url, 
+source = popily.add_source(url=url, 
                                 columns=columns, title=title)
 
 # Or if your data is in a database in a 'characters' table
 connection_string = 'mysql://username:password@host:port/database'
 query = 'SELECT * FROM characters'
-source = popily_api.add_source(
+source = popily.add_source(
                         connection_string=connection_string, 
                         query=query, columns=columns, 
                         title=title)
@@ -118,7 +154,7 @@ So this source is available at `https://popily.com/explore/source/dc-wikia-data-
 Now you can start retrieving cool interactive charts. For example let's say that we were interested in the relationship between gender and "alignment" (whether a character is good or bad). Just ask Popily for the relationship you're curious about based on the column names.
 
 {% highlight python %}
-insights = popily_api.get_insights(source['id'],
+insights = popily.get_insights(source['id'],
                                     columns=['ALIGN','SEX'])
 {% endhighlight %}
 
@@ -146,7 +182,7 @@ This gives us a response that looks like this:
 Don't worry about the `insight_type`, `insight_type_category` and `filters_key` properties, we'll get to those in a second. Now if we want to embed this insight into our application, we can ask for an embeddable URL based on the insight's id. 
 
 {% highlight python %}
-insight = popily_api.get_insight(249985)
+insight = popily.get_insight(249985)
 {% endhighlight %}
 
 This returns the following:
@@ -183,13 +219,13 @@ You'll see a chart that looks something like this:
 You can manually change the height and width in the returned URL by modifying the width and height values assigned to the `style` parameter (`style=compact-WIDTH-HEIGHT`), or you can pass these as parameters when you retrieve the insight. 
 
 {% highlight python %}
-popily_api.get_insight(249985,height=500,width=500)
+popily.get_insight(249985,height=500,width=500)
 {% endhighlight %}
 
 Now you're ready to further customize the chart display, like changing the title, axis labels, category ordering, and pretty much whatever else you want.
 
 {% highlight python %}
-popily_api.customize_insight(249985,
+popily.customize_insight(249985,
                             title='This Chart is Awesome',
                             x_label='Goodness',
                             y_label='Genders',
@@ -215,7 +251,7 @@ filters = [
         'values': ['Genderless Characters','Transgender Characters']
     }
 ]
-insight = popily_api.get_insight(249985, filters=filters)
+insight = popily.get_insight(249985, filters=filters)
 {% endhighlight %}
 
 <img style="display:inline" src="{{ site.baseurl }}/public/images/example-chart-3.png">
@@ -229,7 +265,7 @@ filters = [
         'values': ['Genderless Characters','Transgender Characters']
     }
 ]
-insight = popily_api.customize_insight(249985, 
+insight = popily.customize_insight(249985, 
                 title='Breakdown Without Male or Female Characters',
                 filters=filters)
 {% endhighlight %}
@@ -248,12 +284,12 @@ Using these basic ingredients, you can quickly add a few charts to a dashboard, 
 
 {% highlight python %}
 # This will only return 1 insight
-insights = popily_api.get_insights(source['id'],
+insights = popily.get_insights(source['id'],
                 columns=['SEX','ALIGN'],
                 insight_type='count_by_category_by_category')
 
 # So we can go right ahead and get the embed url
-embed_url = popily_api.get_insight(insights['results'][0]['id'])['embed_url']
+embed_url = popily.get_insight(insights['results'][0]['id'])['embed_url']
 {% endhighlight %}
 
 **Third**: We're here to help. Come hang out with us on Slack, or send an email to awesome@popily.com. 
