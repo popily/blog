@@ -4,7 +4,7 @@ title: Getting to Know the Popily API
 author: Jonathon Morgan
 ---
 
-Let's walk through how to get started with our new "analytics as a service" platform, so you can go from raw data to cool interactive visualizations in just a few lines of code.
+Let's walk through how to get started with our new "analytics as a service" platform, so you can go from raw data to cool interactive visualizations in just a few lines of code.<!--more-->
 
 First step, grab the `popily-api` package from pypi.
 
