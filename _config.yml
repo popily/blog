@@ -1,35 +1,32 @@
-# Built with Jekyll 2.5.3
-#
 # Permalinks
-#
-# Use of `relative_permalinks` ensures post links from the index work properly.
-permalink: none
-
-# Markdown specs
-markdown: kramdown
-
-kramdown:
-  auto_ids:       true
-  footnote_nr:    1
-  entity_output:  as_char
-  footnote_backlink: "&#x21a9;&#xfe0e;"
-  toc_levels:     1..6
-  smart_quotes:   lsquo,rsquo,ldquo,rdquo
-  enable_coderay: false
+permalink:           pretty
 
 # Setup
-title:               Popily
-tagline:             'Data for Developers'
-description:         'Ed is a Jekyll theme designed for textual editors based on minimal computing principles, and focused on legibility and flexibility.'
-url:                 http://blog.popily.com
-baseurl:             ''
+title:               blog.Popily
+tagline:             Automatic visualizations
+url:                 http://getpoole.com
+paginate:            10
+baseurl:             ""
+
+# Assets
+#
+# We specify the directory for Jekyll so we can use @imports.
+sass:
+  sass_dir:          _sass
+  style:            :compressed
 
 # About/contact
 author:
-  name:              Alex Gil
-  url:               https://twitter.com/elotroalex
-  email:             colibri.alex@gmail.com
+  name:              Mark Otto
+  url:               https://twitter.com/mdo
+  email:             markdotto@gmail.com
 
 # Custom vars
-version:             0.0.3
+version:             2.0.0
+github:
+  repo:              https://github.com/poole/poole
 
+# Gems
+gems:
+  - jekyll-paginate
+  - jekyll-gist

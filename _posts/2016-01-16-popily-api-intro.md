@@ -1,12 +1,12 @@
 ---
-layout: narrative
+layout: post
 title: Getting to Know the Popily API
 author: Jonathon Morgan
 ---
 
 Let's walk through how to get started with our new "analytics as a service" platform, so you can go from raw data to cool interactive visualizations in just a few lines of code.
 
-First step, grab the `popily-api` package from pypi. 
+First step, grab the `popily-api` package from pypi.
 
 {% highlight python %}
 pip install popily-api
@@ -31,7 +31,7 @@ columns_in_your_data = [
     }
 ]
 popily = popily_api.Popily('YOUR API TOKEN')
-source = popily.add_source('http://your-csv-file.csv', 
+source = popily.add_source('http://your-csv-file.csv',
                     columns=columns_in_your_data)
 
 insights = popily.get_insights(source['id'],
@@ -56,22 +56,22 @@ Here's a few rows from the file so you know what we're working with.
 |---------|--------------------------------------|----------------------------------------------|-----------------|--------------------|--------------------|-----------------------|-------------------
 | 1422    | Batman (Bruce Wayne)                 | \/wiki\/Batman_(Bruce_Wayne)                 | Secret Identity | Good Characters    | Blue Eyes          | Black Hair            | Male Characters   
 | 23387   | Superman (Clark Kent)                | \/wiki\/Superman_(Clark_Kent)                | Secret Identity | Good Characters    | Blue Eyes          | Black Hair            | Male Characters   
-| 1448    | Wonder Woman (Diana Prince)          | \/wiki\/Wonder_Woman_(Diana_Prince)          | Public Identity | Good Characters    | Blue Eyes          | Black Hair            | Female Characters 
+| 1448    | Wonder Woman (Diana Prince)          | \/wiki\/Wonder_Woman_(Diana_Prince)          | Public Identity | Good Characters    | Blue Eyes          | Black Hair            | Female Characters
 
 ---
 
 ## Adding Data
 
-We can post this file to Popily with a description of the type of data in each column, and Popily should do the rest. Popily understands more than just integers and strings, it can also work with higher-level concepts like categories, US states or currency. We're always adding to this list, but these are the available types as of today. 
+We can post this file to Popily with a description of the type of data in each column, and Popily should do the rest. Popily understands more than just integers and strings, it can also work with higher-level concepts like categories, US states or currency. We're always adding to this list, but these are the available types as of today.
 
 - category
 - numeric (integers or floats)
-- currency 
+- currency
 - datetime (any kind of date)
-- country 
+- country
 - state (only US states for now)
 - coordinate (formatted like latitude,longitude)
-- zipcode 
+- zipcode
 - rowlabel (a unique id)
 
 With all that out of the way, here's the code that adds this data source to Popily.
@@ -111,26 +111,26 @@ columns = [
     }
 ]
 
-source = popily.add_source(file_obj=file_data, 
+source = popily.add_source(file_obj=file_data,
                                 columns=columns, title=title)
 {% endhighlight %}
 
 A couple things to point out:
 
-1) In the example I uploaded a file. You can just as easily give Popily the URL of a file, or connect to a database. 
+1) In the example I uploaded a file. You can just as easily give Popily the URL of a file, or connect to a database.
 
 {% highlight python %}
 # Get the data from a URL
 url = 'https://raw.githubusercontent.com/fivethirtyeight/data/master/comic-characters/dc-wikia-data.csv'
-source = popily.add_source(url=url, 
+source = popily.add_source(url=url,
                                 columns=columns, title=title)
 
 # Or if your data is in a database in a 'characters' table
 connection_string = 'mysql://username:password@host:port/database'
 query = 'SELECT * FROM characters'
 source = popily.add_source(
-                        connection_string=connection_string, 
-                        query=query, columns=columns, 
+                        connection_string=connection_string,
+                        query=query, columns=columns,
                         title=title)
 {% endhighlight %}
 
@@ -179,7 +179,7 @@ This gives us a response that looks like this:
 }
 {% endhighlight %}
 
-Don't worry about the `insight_type`, `insight_type_category` and `filters_key` properties, we'll get to those in a second. Now if we want to embed this insight into our application, we can ask for an embeddable URL based on the insight's id. 
+Don't worry about the `insight_type`, `insight_type_category` and `filters_key` properties, we'll get to those in a second. Now if we want to embed this insight into our application, we can ask for an embeddable URL based on the insight's id.
 
 {% highlight python %}
 insight = popily.get_insight(249985)
@@ -216,7 +216,7 @@ You'll see a chart that looks something like this:
 
 <img style="display:inline" src="{{ site.baseurl }}/public/images/example-chart.png">
 
-You can manually change the height and width in the returned URL by modifying the width and height values assigned to the `style` parameter (`style=compact-WIDTH-HEIGHT`), or you can pass these as parameters when you retrieve the insight. 
+You can manually change the height and width in the returned URL by modifying the width and height values assigned to the `style` parameter (`style=compact-WIDTH-HEIGHT`), or you can pass these as parameters when you retrieve the insight.
 
 {% highlight python %}
 popily.get_insight(249985,height=500,width=500)
@@ -236,7 +236,7 @@ This changes will now immediately be reflected in our embedded visualizations.
 
 <img style="display:inline" src="{{ site.baseurl }}/public/images/example-chart-2.png">
 
-Check out the full documentation for all the available customization options. 
+Check out the full documentation for all the available customization options.
 
 ---
 
@@ -265,7 +265,7 @@ filters = [
         'values': ['Genderless Characters','Transgender Characters']
     }
 ]
-insight = popily.customize_insight(249985, 
+insight = popily.customize_insight(249985,
                 title='Breakdown Without Male or Female Characters',
                 filters=filters)
 {% endhighlight %}
@@ -292,4 +292,4 @@ insights = popily.get_insights(source['id'],
 embed_url = popily.get_insight(insights['results'][0]['id'])['embed_url']
 {% endhighlight %}
 
-**Third**: We're here to help. Come hang out with us on Slack, or send an email to awesome@popily.com. 
+**Third**: We're here to help. Come hang out with us on Slack, or send an email to awesome@popily.com.

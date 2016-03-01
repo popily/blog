@@ -1,35 +1,121 @@
-# Ed: A Jekyll Theme for Minimal Editions
+# Poole
 
-![Sample Ed screenshot](https://github.com/elotroalex/ed/blob/master/assets/screenshot.png)
+*The Strange Case of Dr. Jekyll and Mr. Hyde* tells the story of a lawyer investigating the connection of two persons, Dr. Henry Jekyll and Mr. Edward Hyde. Chief among the novel's supporting cast is a man by the name of Mr. Poole, Dr. Jekyll's loyal butler.
 
-## Introduction
+-----
 
-One of our most pressing and ever revolving needs as scholars is to pass on our textual artifacts from one generation to another. The art of textual editing, among other practices, has helped many cultures to remember and interpret for centuries. Alas, that art is practiced and encouraged in its highest form by a dwindling number of scholars. In a digital environment the problem is compounded by the difficulties of the medium. While vast repositories, and "e-publications" appear on the online scene yearly, very few manifest a textual scholar's disciplined attention to detail. In contrast, most textual scholars who have made the leap to a rigorous digital practice have focused on markup, relying on technical teams to deploy and maintain their work. This makes your average scholarly digital edition a very costly, and therefore limited affair. We hope that Ed can help would-be and veteran textual scholars make it easier to deploy their own editions in a lasting way.
+Poole is the butler for [Jekyll](http://jekyllrb.com), the static site generator. It's designed and developed by [@mdo](https://twitter.com/mdo) to provide a clear and concise foundational setup for any Jekyll site. It does so by furnishing a full vanilla Jekyll install with example templates, pages, posts, and styles.
 
-Ed is a [Jekyll](https://jekyllrb.com/
-) theme designed for textual editors based on [minimal computing principles](http://go-dh.github.io/mincomp/), and focused on legibility, ease and flexibility. In other words, the technology is easier to learn or teach and can produce beautifully rendered scholarly or reading editions of texts. The resulting edition consists of static pages whose rate of decay is substantially lower than database-driven systems. As an added bonus, these static pages require less bandwith.
+![Poole](https://f.cloud.github.com/assets/98681/1834359/71ae4048-73db-11e3-9a3c-df38eb170537.png)
 
-Ed is built on top of [Lanyon](https://github.com/poole/lanyon), a Jekyll theme based on [Poole](http://getpoole.com), "the Jekyll butler," both created by [Mark Otto](<https://github.com/mdo) and distributed with an MIT license. Thanks to Mark Otto for his helpful streamlining. 
+See Poole in action with [the demo site](http://demo.getpoole.com).
 
-## Sample Ed editions.
+There are currently two official themes built on Poole:
 
-- [Our sample site](http://elotroalex.github.io/ed/) is the first edition built with Ed.
+* [Hyde](http://hyde.getpoole.com)
+* [Lanyon](http://lanyon.getpoole.com)
+
+Individual theme feedback and bug reports should be submitted to the theme's individual repository.
 
 
+## Contents
 
-## Current Features
-- Templates for narrative, drama and poetry
-- Responsive design for mobile phones, tablets and PCs.
-- Relatively easy to learn and teach
-- Works well in high- or low- bandwitdh scenarios
-- Easier for digital archives and libraries to preserve
-- Open source, open access
-- Unobtrusive footnotes
-- Works well with Zotero
-- Ability to generate well-formatted bibliographies and linked citations using [jekyll-scholar](https://github.com/inukshuk/jekyll-scholar) by [Sylvester Keil](https://github.com/inukshuk/)
-- Annotations via [hypothes.is](https://hypothes.is/)
-- Automatic table of content generation
+- [Usage](#usage)
+- [Options](#options)
+  - [Rems, `font-size`, and scaling](#rems-font-size-and-scaling)
+- [Development](#development)
+- [Author](#author)
+- [License](#license)
 
-## Installing and using Ed
 
-To learn how to install and begin using Ed, please visit our [documentation page](http://elotroalex.github.io/ed/documentation.html).
+## Usage
+
+### 1. Install dependencies
+
+Poole is built on Jekyll and uses its built-in SCSS compiler to generate our CSS. Before getting started, you'll need to install the Jekyll gem:
+
+```bash
+$ gem install jekyll
+```
+
+**Windows users:** Windows users have a bit more work to do, but luckily [@juthilo](https://github.com/juthilo) has your back with his [Run Jekyll on Windows](https://github.com/juthilo/run-jekyll-on-windows) guide.
+
+**Need syntax highlighting?** Poole includes support for Pygments or Rouge, so install your gem of choice to make use of the built-in styling. Read more about this [in the Jekyll docs](http://jekyllrb.com/docs/templates/#code_snippet_highlighting).
+
+### 2a. Quick start
+
+To help anyone with any level of familiarity with Jekyll quickly get started, Poole includes everything you need for a basic Jekyll site. To that end, just download Poole and start up Jekyll.
+
+### 2b. Roll your own Jekyll site
+
+Folks wishing to use Jekyll's templates and styles can do so with a little bit of manual labor. Download Poole and then copy what you need (likely `_layouts/`, `*.html` files, `atom.xml` for RSS, and `public/` for CSS, JS, etc.).
+
+### 3. Running locally
+
+To see your Jekyll site with Poole applied, start a Jekyll server. In Terminal, from `/poole` (or whatever your Jekyll site's root directory is named):
+
+```bash
+$ jekyll serve
+```
+
+Open <http://localhost:4000> in your browser, and voilà.
+
+### 4. Serving it up
+
+If you host your code on GitHub, you can use [GitHub Pages](https://pages.github.com) to host your project.
+
+1. Fork this repo and switch to the `gh-pages` branch.
+  1. If you're [using a custom domain name](https://help.github.com/articles/setting-up-a-custom-domain-with-github-pages), modify the `CNAME` file to point to your new domain.
+  2. If you're not using a custom domain name, **modify the `baseurl` in `_config.yml`** to point to your GitHub Pages URL. Example: for a repo at `github.com/username/poole`, use `http://username.github.io/poole/`. **Be sure to include the trailing slash.**
+3. Done! Head to your GitHub Pages URL or custom domain.
+
+No matter your production or hosting setup, be sure to verify the `baseurl` option file and `CNAME` settings. Not applying this correctly can mean broken styles on your site.
+
+## Options
+
+Poole includes some customizable options, typically applied via classes on the `<body>` element.
+
+
+### Rems, `font-size`, and scaling
+
+Poole is built almost entirely with `rem`s (instead of pixels). `rem`s are like `em`s, but instead of building on the immediate parent's `font-size`, they build on the root element, `<html>`.
+
+By default, we use the following:
+
+```css
+html {
+  font-size: 16px;
+  line-height: 1.5;
+}
+@media (min-width: 38em) {
+  html {
+    font-size: 20px;
+  }
+}
+
+```
+
+To easily scale your site's typography and components, simply customize the base `font-size`s here.
+
+
+## Development
+
+Poole has two branches, but only one is used for active development.
+
+- `master` for development.  **All pull requests should be to submitted against `master`.**
+- `gh-pages` for our hosted site, which includes our analytics tracking code. **Please avoid using this branch.**
+
+CSS is handled via Jeykll's built-in Sass compiler. Source Sass files are located in `_sass/`, included into `styles.scss`, and compile to `styles.css`.
+
+## Author
+
+**Mark Otto**
+- <https://github.com/mdo>
+- <https://twitter.com/mdo>
+
+
+## License
+
+Open sourced under the [MIT license](LICENSE.md).
+
+<3
