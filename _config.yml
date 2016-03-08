@@ -2,7 +2,7 @@
 permalink:           pretty
 
 # Setup
-title:               Popily - Blog
+title:               Popily Blog
 tagline:             Customer-Facing Analytics, Built For Developers
 url:                 http://blog.popily.com
 paginate:            10
