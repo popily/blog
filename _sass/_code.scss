@@ -6,6 +6,7 @@
 code,
 pre {
   font-family: $code-font-family;
+
 }
 
 code {
@@ -19,6 +20,7 @@ code {
 pre {
   margin-top: 0;
   margin-bottom: 1rem;
+padding: 1em;
 }
 
 pre code {
@@ -30,12 +32,14 @@ pre code {
 
 // Pygments via Jekyll
 .highlight {
-  padding: 1rem;
+  padding: 0;
   margin-bottom: 1rem;
   font-size: .8rem;
   line-height: 1.1;
   background-color: #f9f9f9;
   border-radius: .25rem;
+  border: 1px solid #ccc;
+
 
   pre {
     margin-bottom: 0;
