@@ -26,7 +26,7 @@ html {
 
 body {
   color: $body-color;
-  background-color: $body-bg;
+  background: url('/public/images/bg-stars-green.svg')  0 225px no-repeat;
   -webkit-text-size-adjust: 100%;
       -ms-text-size-adjust: 100%;
 }
