@@ -5,7 +5,9 @@
 
 .page,
 .post {
-  margin-bottom: 4em;
+  margin-bottom: 3em;
+  padding-bottom: 1em;
+  background: url('/public/images/icon-star.svg')  bottom center no-repeat;
 
   li + li {
     margin-top: .25rem;
