@@ -1,10 +1,11 @@
 ---
 layout: post
-title: Using Keen.io Data in Popily
+title: Using Keen IO Data in Popily
 author: Jonathon Morgan
 ---
+We are super excited to [announce a partnership](https://keen.io/blog/140745630296/discover-gold-with-keen-io-and-popily) with our buddies at Keen IO to bring all ya’all a heavy hitting combo for your data analysis: automatic charts you all know and love from Popily PLUS event tracking, data collecting features from Keen IO that let you gather data from ANYWHERE!
 
-[Keen.io](http://keen.io) is a fantastic platform for capturing and analyzing event data. Let's see how we can use Popily to automatically turn that data into explorable visualizations.<!--more-->
+[Keen IO](http://keen.io) is a fantastic platform for capturing and analyzing event data. Let's see how we can use Popily to automatically turn that data into explorable visualizations.<!--more-->
 
 ## Getting the Data
 
@@ -111,5 +112,5 @@ print insight['embed_url']
 
 You can use the `embed_url` property of the returned insight in an iframe, and coming soon you'll be able to append fully responsive, interactive visualizations directly to DOM elements with our new charting library. For more information about retrieving visualizations (that we call `insights`), check out the [insight section](http://developers.popily.com/#insights) of our API docs.
 
-Of course that's just the beginning. With Popily you can combine data sources, automatically update your visualizations when the underlying data changes, connect directly to databases and API endpoints (like Keen's REST API!), and customize visualizations to your heart's content. Give us a shout at [awesome@popily.com](mailto:awesome@popily.com) or [join us on Slack](https://gentle-shore-82359.herokuapp.com/) if you have any questions, feature requests, or ideas for our [nerdy podcast about data and drinking](http://partiallyderivative.com).
+You can read more about the integration on the [Keen IO site](https://keen.io/docs/integrations/popily/). If you want to use our API for an even cooler way of loading in data into Popily, check out our [API documentation](http://developers.popily.com/). So go on, try your hand at loading Keen IO data into Popily, and if you run into any trouble - we are always here to help and cheer you on. Give us a shout at [awesome@popily.com](mailto:awesome@popily.com) or [join us on Slack](https://gentle-shore-82359.herokuapp.com/) if you have any questions, feature requests, or ideas for our [nerdy podcast about data and drinking](http://partiallyderivative.com).
 
