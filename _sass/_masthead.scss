@@ -48,3 +48,23 @@ letter-spacing: 1.2px;
     text-align: center;
     padding: 100px 1.5em 2em 1.5em;
 }
+
+@media (max-width: 768px) {
+    #nav li {
+    	float:none;
+        text-align: center;
+    }
+
+    #nav.logo-bar li a{
+        padding: 18px;
+        width: 100%;
+    }
+
+    #nav {
+        margin-bottom: 2em;
+    }
+
+    .hero h1{
+          font-size: 2rem;
+    }
+}
